@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Media</title>
+  <link rel="icon" type="text/css" href="favicons/starfavicon.png">
+  <link rel="stylesheet" href="videos.css">
+  <style>
+    body {
+      background-color: #fa94fb;
+      display: flex;
+      margin:0;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin-bottom: 30%;
+    }
+
+    video {
+      width: 40%; /* Adjust the width as needed */
+      height: auto;
+      position: absolute;
+      transform: translate(-50%, -50%);
+    }
+
+    #video1 {
+      top: 45%;
+      left: 36%;
+    }
+
+    #video2 {
+      top: 120%;
+      left: 64%;
+    }
+
+    /* Custom cursor on video control buttons */
+    video::-webkit-media-controls-play-button,
+    video::-webkit-media-controls-pause-button,
+    video::-webkit-media-controls-volume-slider,
+    video::-webkit-media-controls-mute-button,
+    video::-webkit-media-controls-timeline,
+    video::-webkit-media-controls-current-time-display,
+    video::-webkit-media-controls-time-remaining-display,
+    video::-webkit-media-controls-seek-back-button,
+    video::-webkit-media-controls-seek-forward-button,
+    video::-webkit-media-controls-fullscreen-button,
+    video::-webkit-media-controls-overflow-button {
+      cursor: url('cursor/pointyfinger.png'), auto !important;
+    }
+  </style>
+</head>
+<body>
+
+<video id="video1" controls loop> <source src="videos/notsofurrycropped.mp4" type="video/mp4"></video>
+<video id="video2" controls loop> <source src="videos/bunny.mp4" type="video/mp4"></video>
+
+</body>
+</html>

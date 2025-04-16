@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+
+
+<!-- Rotating Camera  -->
+
+    <script>
+      AFRAME.registerComponent("rotate-with-camera", {
+      tick: (function() {
+        // create once
+        const tmpq = new THREE.Quaternion();
+        const tmpe = new THREE.Euler();
+        
+        return function(t, dt) {
+          if (!this.el.sceneEl.camera) return; // ignore when there is no camera
+          const cam = this.el.sceneEl.camera.el; // get the camera entity
+          cam.object3D.getWorldQuaternion(tmpq); // get the world rotation
+            tmpe.setFromQuaternion(tmpq, 'YXZ')
+            // set attribute is necesarry for wasd-controls
+          this.el.setAttribute("rotation", {x: 0, y: tmpe.y * 180 / Math.PI, z: 0 })
+        }
+      })()
+    })
+  </script>
+
+
+    <title>Gallery Space</title>
+    <link rel="icon" type="text/css" href="favicons/starfavicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+  <body>
+
+    <!-- Button on top of A-Scene -->
+
+    <button id="mediaButton" style="position: absolute; top: 93.2658%; left: 87.5%; z-index: 9999; background-color: rgba(255, 255, 255); color: rgba(120, 102, 102, 0.8); border: 0.149em solid rgba(120, 102, 102, 0.8); border-radius: 0.48em; padding: 0.27% 0.69%; font-size: 1.219em; font-weight: bold; cursor: pointer;" onmouseover="this.style.color='red'; this.style.borderColor='red';" onmouseout="this.style.color='rgba(120, 102, 102, 0.8)'; this.style.borderColor='rgba(120, 102, 102, 0.8)';" onclick="window.location.href='media.html'">MEDIA</button>
+
+
+<!-- Setting up the A-Scene: -->
+
+    <a-scene loading-screen="dotsColor: #fa94fb; backgroundColor: black" physics="debug: true">
+    <a-entity environment="preset: default; skyType: atmosphere; groundTexture:walkernoise; groundColor:rgb(222,189,155);groundColor2:rgb(235,200,160); ground:canyon; groundYScale:17; fog:0"></a-entity>
+    
+
+<!-- Geometry -->
+
+       <a-box class="wall" rotation="0 30 0" color="rgb(30,30,30)" depth="0.15" height="3.5" width="6.1" position="-2.4 0.6 -3.5"></a-box>
+       <a-cylinder color="rgb(30,30,30)" radius="0.34" height="0.3" position="-5.3 0 0.6"></a-cylinder>
+
+  
+
+      <!-- Assets -->
+
+      <a-assets>
+        <video id="notsofurry" autoplay loop="true" preload="auto" src="videos/notsofurry.mp4" ></video>
+        <video id="bunny" autoplay loop="true" preload="auto" src="videos/notsofurry.mp4" ></video>
+        <a-asset-item id="tv1" src="3dmodels/tv1.glb"></a-asset-item>
+        <a-asset-item id="swingset" src="3dmodels/swingset.glb"></a-asset-item>
+        <a-asset-item id="earth" src="3dmodels/earth2.glb"></a-asset-item>
+        <a-asset-item id="femalearmpose" src="3dmodels/femalearmpose.glb"></a-asset-item>
+        <a-asset-item id="sheep" src="3dmodels/sheep.glb"></a-asset-item>
+        <a-asset-item id="grass" src="3dmodels/grass.glb"></a-asset-item>
+        <a-asset-item id="rug" src="3dmodels/rug.glb"></a-asset-item>
+        <a-asset-item id="plant" src="3dmodels/plant.glb"></a-asset-item>
+      </a-assets>
+
+
+   
+
+        <!-- NotSoFurry Video -->
+    
+      <!-- Using the asset management system. -->
+      <a-video src="#notsofurry" width="0.63" height="0.379" position="1.7919 0.33 2.166" rotation="0 -53 0" volume="0.05"></a-video>
+
+
+
+
+
+
+<!-- 3D Models -->
+
+<a-entity gltf-model="#tv1" position="2 0.3 2" scale="1.4 1.4 1.4" rotation="0 -53 0"></a-entity>
+<a-entity gltf-model="#tv1" position="-2.2 0.6 1.4" scale="1.4 1.4 1.4" rotation="0 41 0"></a-entity>
+<a-entity gltf-model="#tv1" position="-2.15 1.25 1.4" scale="1.4 1.4 1.4" rotation="0 13 0"></a-entity>
+<a-entity gltf-model="#swingset" position="2.2 0.1 -2.3" scale="0.011 0.011 0.011" rotation="0 -10 0"></a-entity>
+<a-entity gltf-model="#earth" position="-5.3 1.2 0.6" scale="0.75 0.75 0.75" rotation="0 0 0" animation="property: rotation; to: 0 360 0; dur: 29000; loop: true; easing: linear"></a-entity>
+<a-entity gltf-model="#sheep" position="5.9 1 -2.2" scale="0.00116 0.00116 0.00116" rotation="0 -112 0"></a-entity>
+<a-entity gltf-model="#sheep" position="-5.5 1 4.5" scale="0.00116 0.00116 0.00116" rotation="0 70 0"></a-entity>
+<a-entity gltf-model="#sheep" position="-5.1 1 -4" scale="0.00116 0.00116 0.00116" rotation="0 190 0"></a-entity>
+<a-entity gltf-model="#grass" position="2.1 0.1 -2.6" scale="0.048 0.048 0.048" rotation="0 110 0"></a-entity>
+<a-entity gltf-model="#rug" position="-1.88 0 1.4" scale="0.0017 0.0017 0.0017" rotation="0 160 0"></a-entity>
+<a-entity gltf-model="#plant" position="4.6 0 2.4" scale="0.0065 0.0065 0.0065" rotation="0 -180 0"></a-entity>
+
+
+
+
+
+
+<!-- Arm + Camera: -->
+
+<a-entity gltf-model="#femalearmpose" position="0 0.36 5.5" scale="0.1 0.1 0.1" rotation="0 0 0" wasd-controls= "enabled:true;acceleration:30" rotate-with-camera="enabled:true" look-controls>>            
+  <a-entity id="rig" position="-1.2 12.8 5" rotation="-14 0 0" > 
+  <a-entity id="camera" camera ></a-entity> 
+</a-entity> 
+
+
+
+</a-scene>
+  </body>
+</html>
